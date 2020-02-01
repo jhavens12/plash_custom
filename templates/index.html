@@ -1,5 +1,20 @@
 <style>
 
+  .xlarge_VW {
+    font-size: 8vw;
+  }
+
+  .large_VW {
+    font-size: 6vw;
+  }
+
+  .medium_VW {
+     font-size: 5vw
+  }
+
+  .small_VW {
+     font-size: 4vw
+  }
 
 .center {
   position: absolute;
@@ -11,7 +26,6 @@
   width: 100%;
   background-color: black;
   color: white;
-  font-size: 6vw;
   border-radius: 3px;
   height: 100vh;
   display: flex;
@@ -25,7 +39,7 @@
 
 <body>
 
-<div class="center">
+<div class="center {{sizing}}">
   {{ variable }}
 </div>
 
