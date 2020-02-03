@@ -20,10 +20,11 @@ def index():
 
 def get_size(variable):
     length = len(variable)
+    print(length)
     if length > 35:
         print("Returning small")
         return "small_VW"
-    elif length > 30:
+    elif length > 28:
         print("Returning medium")
         return "medium_VW"
     elif length > 20:

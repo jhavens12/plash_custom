@@ -1,10 +1,13 @@
 from PIL import Image, ImageDraw, ImageFont
 import requests
 from bs4 import BeautifulSoup
+import credentials
+
+import_png = True
+local_dir = credentials.local_dir
 
 H = 2436
 W = 1125
-
 
 def get_yearly():
     url = "https://smashrun.com/jonamerica/overview/2020"
@@ -31,7 +34,7 @@ def get_size(variable):
     if length > 35:
         print("Returning small")
         return 45
-    elif length > 30:
+    elif length > 28:
         print("Returning medium")
         return 50
     elif length > 20:
@@ -42,17 +45,24 @@ def get_size(variable):
         return 90
 
 msg = get_yearly()
-im = Image.new("RGBA",(W,H),"black")
-fnt = ImageFont.truetype('./Fonts/Finador-Light.ttf', get_size(msg))
+if import_png:
+    im  = Image.open(local_dir+"grey.png")
+else:
+    im = Image.new("RGBA",(W,H),"black")
+
+fnt = ImageFont.truetype(local_dir+'Fonts/Finador-Light.ttf', get_size(msg))
 draw = ImageDraw.Draw(im)
 w, h = draw.textsize(msg, font=fnt)
 draw.text(((W-w)/2,(H-h)/2), msg, font=fnt, fill="white")
-im.save('Yearly.png')
+im.save(local_dir+'Yearly.png')
 
 msg = get_total()
-im = Image.new("RGBA",(W,H),"black")
-fnt = ImageFont.truetype('./Fonts/Finador-Light.ttf', get_size(msg))
+if import_png:
+    im  = Image.open(local_dir+"grey.png")
+else:
+    im = Image.new("RGBA",(W,H),"black")
+fnt = ImageFont.truetype(local_dir+'Fonts/Finador-Light.ttf', get_size(msg))
 draw = ImageDraw.Draw(im)
 w, h = draw.textsize(msg, font=fnt)
 draw.text(((W-w)/2,(H-h)/2), msg, font=fnt, fill="white")
-im.save('Total.png')
+im.save(local_dir+'Total.png')
